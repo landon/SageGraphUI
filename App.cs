@@ -25,12 +25,6 @@ namespace Test
         {
             Window.OnLoad += OnWindowLoad;
             Window.OnResize += OnResize;
-            Window.OnDeviceOrientation += OnDeviceOrientation;
-        }
-
-        static void OnDeviceOrientation(Event e)
-        {
-            OnLayoutChange();
         }
 
         static void OnResize(Event e)
