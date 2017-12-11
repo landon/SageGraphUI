@@ -1427,17 +1427,19 @@ namespace Test
         void OnMouseButtonDown(MouseEvent<HTMLCanvasElement> e)
         {
             _ctrlDown = e.CtrlKey;
-           // Canvas.SetCapture(true);  // chrome does not seem to support this, what?
+            // Canvas.SetCapture(true);  // chrome does not seem to support this, what?
+
+            //Console.WriteLine(e.ClientX + ", " + e.ClientY + ", " + Canvas.ClientTop + ", " + Canvas.OffsetTop + ", " + Canvas.ScrollTop);
 
             if (e.ShiftKey)
             {
                 if (MouseButtonDoubleClicked != null)
-                    MouseButtonDoubleClicked(e.LayerX, e.LayerY, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
+                    MouseButtonDoubleClicked(e.ClientX - Canvas.OffsetLeft, e.ClientY - Canvas.OffsetTop, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
             }
             else
             {
                 if (MouseButtonDown != null)
-                    MouseButtonDown(e.LayerX, e.LayerY, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
+                    MouseButtonDown(e.ClientX - Canvas.OffsetLeft, e.ClientY - Canvas.OffsetTop, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
             }
         }
 
@@ -1450,7 +1452,7 @@ namespace Test
 
 
             if (MouseButtonUp != null)
-                MouseButtonUp(e.LayerX, e.LayerY, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
+                MouseButtonUp(e.ClientX - Canvas.OffsetLeft, e.ClientY - Canvas.OffsetTop, e.Button == 0 ? MouseButton.Left : MouseButton.Right);
 
             if (e.CtrlKey && e.AltKey)
             {

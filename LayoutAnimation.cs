@@ -43,7 +43,7 @@ namespace Test
             while(_step < Steps)
             {
                 DoStep();
-                await Task.Delay(10);
+                await Task.Delay(5);
             }
         }
 
